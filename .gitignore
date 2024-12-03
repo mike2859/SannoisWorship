@@ -57,3 +57,11 @@ Thumbs.db
 /SannoisWorship/SannoisWorship/obj
 /SannoisWorship/SannoisWorship.Client/bin/Debug/net9.0
 /SannoisWorship/SannoisWorship.Client/obj
+/SannoisWorship.Application/bin/Debug/net9.0
+/SannoisWorship.Application/obj
+/SannoisWorship.Application.Tests/bin/Debug/net9.0
+/SannoisWorship.Application.Tests/obj
+/SannoisWorship.Core/bin/Debug/net9.0
+/SannoisWorship.Core/obj
+/SannoisWorship.Infrastructure/bin/Debug/net9.0
+/SannoisWorship.Infrastructure/obj
