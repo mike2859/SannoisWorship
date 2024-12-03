@@ -7,6 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\SannoisWorship.Application\SannoisWorship.Application.csproj" />
+    <ProjectReference Include="..\..\SannoisWorship.Infrastructure\SannoisWorship.Infrastructure.csproj" />
     <ProjectReference Include="..\SannoisWorship.Client\SannoisWorship.Client.csproj" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="9.0.0" />
   </ItemGroup>

@@ -1,11 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35506.116 d17.12
+VisualStudioVersion = 17.12.35506.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SannoisWorship", "SannoisWorship\SannoisWorship\SannoisWorship.csproj", "{C1ACEC08-1E09-4C26-A53E-F2209009605B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SannoisWorship.Client", "SannoisWorship\SannoisWorship.Client\SannoisWorship.Client.csproj", "{6478B93E-DDDC-4A2D-A664-C522495F4C22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SannoisWorship.Application", "SannoisWorship.Application\SannoisWorship.Application.csproj", "{E960ECFE-0ADD-4286-A444-1EC84563E8C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SannoisWorship.Application.Tests", "SannoisWorship.Application.Tests\SannoisWorship.Application.Tests.csproj", "{FBDF903B-CFE0-46D4-9777-548CEC901C74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SannoisWorship.Core", "SannoisWorship.Core\SannoisWorship.Core.csproj", "{146D74F8-814C-4716-ABFA-63F6B2738138}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SannoisWorship.Infrastructure", "SannoisWorship.Infrastructure\SannoisWorship.Infrastructure.csproj", "{AF0E8BFB-BAFD-4EF5-BAAF-0361920AD934}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +29,22 @@ Global
 		{6478B93E-DDDC-4A2D-A664-C522495F4C22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6478B93E-DDDC-4A2D-A664-C522495F4C22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6478B93E-DDDC-4A2D-A664-C522495F4C22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E960ECFE-0ADD-4286-A444-1EC84563E8C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E960ECFE-0ADD-4286-A444-1EC84563E8C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E960ECFE-0ADD-4286-A444-1EC84563E8C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E960ECFE-0ADD-4286-A444-1EC84563E8C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBDF903B-CFE0-46D4-9777-548CEC901C74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBDF903B-CFE0-46D4-9777-548CEC901C74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBDF903B-CFE0-46D4-9777-548CEC901C74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBDF903B-CFE0-46D4-9777-548CEC901C74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{146D74F8-814C-4716-ABFA-63F6B2738138}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{146D74F8-814C-4716-ABFA-63F6B2738138}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{146D74F8-814C-4716-ABFA-63F6B2738138}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{146D74F8-814C-4716-ABFA-63F6B2738138}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF0E8BFB-BAFD-4EF5-BAAF-0361920AD934}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF0E8BFB-BAFD-4EF5-BAAF-0361920AD934}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF0E8BFB-BAFD-4EF5-BAAF-0361920AD934}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF0E8BFB-BAFD-4EF5-BAAF-0361920AD934}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

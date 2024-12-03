@@ -1,0 +1,33 @@
+﻿@page "/users"
+@attribute [Authorize(Roles = "Admin")]
+
+<h3>Liste des utilisateurs avec leurs rôles</h3>
+
+@if (users == null)
+{
+    <p>Chargement des utilisateurs...</p>
+}
+else
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Nom d'utilisateur</th>
+                <th>Email</th>
+                <th>Rôles</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in users)
+            {
+                <tr>
+                    <td>@user.UserName</td>
+                    <td>@user.Email</td>
+                    <td>@string.Join(", ", user.Roles)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+

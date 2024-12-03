@@ -1,0 +1,48 @@
+﻿@page "/create-user"
+@attribute [Authorize(Roles = "Admin")]
+
+
+
+<h3>Créer un nouvel utilisateur</h3>
+
+<EditForm Model="UserModel" OnValidSubmit="HandleSubmit" FormName="CreateUserForm">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div>
+        <label for="username">Login :</label>
+        <InputText id="username" @bind-Value="UserModel.UserName" />
+    </div>
+
+    <div>
+        <label for="email">Email :</label>
+        <InputText id="email" @bind-Value="UserModel.Email" />
+    </div>
+
+    <div>
+        <label for="password">Mot de passe :</label>
+        <InputText id="password" type="password" @bind-Value="UserModel.Password" />
+    </div>
+
+    <div>
+        <label for="role">Rôle :</label>
+        <InputSelect id="role" @bind-Value="UserModel.Role">
+            <option value="">-- Sélectionnez un rôle --</option>
+            @foreach (var role in roles)
+            {
+                <option value="@role">@role</option>
+            }
+        </InputSelect>
+    </div>
+
+    <button type="submit">Créer l'utilisateur</button>
+</EditForm>
+
+@if (!string.IsNullOrEmpty(message))
+{
+    <p style="color: red">@message</p>
+}
+
+
+
+
+
