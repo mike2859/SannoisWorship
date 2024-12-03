@@ -48,3 +48,12 @@ Thumbs.db
 *.mov
 *.wmv
 
+
+/.gitignore
+/.gitignore
+/.vs
+/SannoisWorship/SannoisWorship/bin/Debug/net9.0
+/SannoisWorship/.vs
+/SannoisWorship/SannoisWorship/obj
+/SannoisWorship/SannoisWorship.Client/bin/Debug/net9.0
+/SannoisWorship/SannoisWorship.Client/obj
