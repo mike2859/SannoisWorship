@@ -5,12 +5,12 @@ namespace SannoisWorship.Application.Interfaces
 {
     public interface IPartitionService
     {
-        Task<List<Partition>> GetAllPartitionsAsync();
+        Task<List<PartitionDTO>> GetAllPartitionsAsync();
 
-        Task<Partition?> GetPartitionByIdAsync(int id);
+        Task<PartitionDTO?> GetPartitionByIdAsync(int id);
         Task AddPartitionAsync(PartitionDTO partitionDTO);
         Task UpdatePartitionAsync(PartitionDTO partitionDTO);
         Task DeletePartitionAsync(int id);
-
+        string ConvertToChordProFromPdf(string pdfFilePath);
     }
 }

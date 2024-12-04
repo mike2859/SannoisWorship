@@ -1,0 +1,53 @@
+﻿@page "/partition-viewer/{id:int}"
+@using SannoisWorship.Application.DTOs
+@using SannoisWorship.Application.Interfaces
+@inject IPartitionService PartitionService
+@rendermode InteractiveServer
+
+<h3>Partition : @PartitionModel?.ChantDTO.Titre</h3>
+
+@if (PartitionModel == null)
+{
+    <p>Chargement en cours...</p>
+}
+else
+{
+    <div>
+        <button @onclick="ToggleViewer" class="btn btn-primary">Afficher le Viewer</button>
+    </div>
+
+    @if (IsViewerVisible)
+    {
+        <div class="viewer">
+            <h4>@PartitionModel.ChantDTO.Titre</h4>
+            <pre>@((MarkupString)FormatChordPro(PartitionModel.Contenu)) </pre>
+        </div>
+    }
+}
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private PartitionDTO? PartitionModel { get; set; }
+    private bool IsViewerVisible { get; set; } = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Récupérer la partition via son ID
+        PartitionModel = await PartitionService.GetPartitionByIdAsync(Id);
+    }
+
+    private void ToggleViewer()
+    {
+        IsViewerVisible = !IsViewerVisible;
+    }
+
+    private string FormatChordPro(string content)
+    {
+        // Ici, vous pouvez appliquer des styles ou mettre en évidence les accords
+        // Exemple simple : ajouter un style aux accords entre []
+        return content.Replace("[", "<span class='chord'>[")
+                      .Replace("]", "]</span>");
+    }
+}

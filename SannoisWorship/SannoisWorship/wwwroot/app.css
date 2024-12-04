@@ -58,3 +58,29 @@ h1:focus {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
     text-align: start;
 }
+
+
+
+.viewer {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.viewer h4 {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+pre {
+    font-family: monospace;
+    white-space: pre-wrap; /* Pour gérer les retours à la ligne */
+}
+
+.chord {
+    color: #d9534f; /* Rouge pour mettre en évidence */
+    font-weight: bold;
+}

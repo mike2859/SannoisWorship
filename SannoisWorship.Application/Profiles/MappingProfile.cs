@@ -11,7 +11,11 @@ public class MappingProfile : Profile
         CreateMap<ChantDTO, Chant>()
             .ForMember(dest => dest.DateCreation, opt => opt.MapFrom(src => DateTime.Now))
             .ForMember(dest => dest.CreatedBy, opt => opt.Ignore())
-            .ReverseMap(); 
+            .ReverseMap();
+
+
+        CreateMap<PartitionDTO, Partition>()
+           .ReverseMap();
     }
 
 }

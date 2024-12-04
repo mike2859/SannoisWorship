@@ -13,6 +13,8 @@ public class PartitionDTO
     public int ChantId { get; set; }
     public ChantDTO ChantDTO { get; set; } = new();
 
+
+    public string FilePath { get; set; }
     // Relation One-to-Many avec Accord
     //public ICollection<Accord>? Accords { get; set; }
 }

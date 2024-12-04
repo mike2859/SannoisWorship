@@ -16,7 +16,11 @@ public class PartitionRepository(SannoisWorshipDbContext context) : IPartitionRe
 
     public async Task<Partition?> GetByIdAsync(int id)
     {
-        return await _context.Partitions.FindAsync(id);
+        //return await _context.Partitions.FindAsync(id);
+
+        return await _context.Partitions
+              .Include(p => p.Chant) 
+              .FirstOrDefaultAsync(p => p.Id == id);
     }
 
     public async Task AddAsync(Partition partition)
