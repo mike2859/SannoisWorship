@@ -1,8 +1,9 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
+using SannoisWorship.Components;
 using SannoisWorship.Infrastructure.Data;
-
-
+using SannoisWorship.Infrastructure.Extensions;
+using SannoisWorship.Application.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,15 +38,20 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 
 builder.Services.AddAuthorization();
 
-builder.Services.AddScoped<IPartitionRepository, PartitionRepository>();
-builder.Services.AddScoped<IChantRepository, ChantRepository>();
+//builder.Services.AddScoped<IPartitionRepository, PartitionRepository>();
+//builder.Services.AddScoped<IChantRepository, ChantRepository>();
 
 
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddScoped<IUserManagementService, UserManagementService>();
-builder.Services.AddScoped<IPartitionService, PartitionService>();
-builder.Services.AddScoped<IChantService, ChantService>();
+//builder.Services.AddScoped<IUserManagementService, UserManagementService>();
+//builder.Services.AddScoped<IPartitionService, PartitionService>();
+//builder.Services.AddScoped<IChantService, ChantService>();
 
+
+// Ajout des services personnalisés
+builder.Services.AddSannoisWorshipServices();
+
+builder.Services.AddApplicationServices(); // Pour AutoMapper
 
 
 // Add services to the container.

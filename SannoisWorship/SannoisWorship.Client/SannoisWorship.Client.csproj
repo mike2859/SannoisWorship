@@ -12,4 +12,9 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="9.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\SannoisWorship.Application\SannoisWorship.Application.csproj" />
+    <ProjectReference Include="..\..\SannoisWorship.Core\SannoisWorship.Core.csproj" />
+  </ItemGroup>
+
 </Project>

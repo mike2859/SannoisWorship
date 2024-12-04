@@ -1,14 +1,14 @@
-﻿using SannoisWorship.Core.Entities;
+﻿using SannoisWorship.Application.DTOs;
 
 namespace SannoisWorship.Application.Interfaces;
 
 public interface IChantService
 {
-    Task<List<Chant>> GetAllChantsAsync();
+    Task<List<ChantDTO>> GetAllChantsAsync();
 
-    Task<Chant?> GetChantByIdAsync(int id);
-    Task AddChantAsync(Chant chant);
-    Task UpdateChantAsync(Chant chant);
+    Task<ChantDTO?> GetChantByIdAsync(int id);
+    Task AddChantAsync(ChantDTO chantDto);
+    Task UpdateChantAsync(ChantDTO chantDto);
     Task DeleteChantAsync(int id);
 
 }

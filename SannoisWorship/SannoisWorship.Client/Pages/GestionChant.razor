@@ -1,0 +1,39 @@
+﻿@page "/gestion-chants"
+@rendermode InteractiveAuto
+
+@* @attribute [Authorize(Roles = "Musicien,Admin")] *@
+
+
+<h3>Liste des chants</h3>
+
+<button class="btn btn-primary" @onclick="OnCreateNewChant">Créer un chant</button>
+
+
+@if (chants == null)
+{
+    <p>Chargement des chants...</p>
+}
+else
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Auteur</th>
+                <th>Tonalité</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var chant in chants)
+            {
+                <tr>
+                    <td>@chant.Titre</td>
+                    <td>@chant.Auteur</td>
+                    <td>@chant.Tonalite</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+

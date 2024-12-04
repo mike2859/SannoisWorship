@@ -1,0 +1,93 @@
+﻿@page "/account-login"
+@inject NavigationManager Navigation
+@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<IdentityUser> SignInManager
+
+
+
+
+<h3>Connexion</h3>
+
+@if (!string.IsNullOrEmpty(ErrorMessage))
+{
+    <div class="alert alert-danger">@ErrorMessage</div>
+}
+
+<EditForm Model="LoginModel" OnValidSubmit="HandleLogin" FormName="LoginForm">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3 form-control">
+        <label for="email" class="form-label">Email</label>
+        <InputText id="email" @bind-Value="LoginModel.Email" />
+        <ValidationMessage For="@(() => LoginModel.Email)" />
+    </div>
+
+    <div class="mb-3 form-control">
+        <label for="password" class="form-label">Mot de passe</label>
+        <InputText id="password" @bind-Value="LoginModel.Password" type="password" />
+        <ValidationMessage For="@(() => LoginModel.Password)" />
+    </div>
+    <div class="mb-3 form-control">
+        <InputCheckbox @bind-Value="LoginModel.RememberMe" /> Se souvenir de moi
+    </div>
+    <button type="submit" class="btn btn-primary">Se connecter</button>
+</EditForm>
+
+@code {
+    //private LoginModel loginModel = new();
+    private string ErrorMessage;
+
+    [SupplyParameterFromForm]
+    public LoginModel LoginModel { get; set; } = new();
+
+
+    protected override void OnInitialized() => LoginModel ??= new();
+
+
+    private async Task HandleLogin()
+    {
+        //User1W0rship!
+        var user = await UserManager.FindByEmailAsync(LoginModel.Email);
+        if (user != null)
+        {
+            var passwordValid = await UserManager.CheckPasswordAsync(user, LoginModel.Password);
+            if (!passwordValid)
+            {
+                // Mot de passe invalide
+                ErrorMessage = "Mot de passe incorrect.";
+            }
+            else
+            {
+                // var result = await SignInManager.PasswordSignInAsync(loginModel.Email, loginModel.Password, isPersistent: loginModel.RememberMe, lockoutOnFailure: false);
+                var result = await SignInManager.PasswordSignInAsync(user, LoginModel.Password, LoginModel.RememberMe, false);
+                if (result.Succeeded)
+                {
+                    Navigation.NavigateTo("/");
+                }
+                else
+                {
+                    // Afficher les erreurs
+                    ErrorMessage = "Échec de la tentative de connexion.";
+                    if (result.IsLockedOut)
+                    {
+                        ErrorMessage += " Votre compte est verrouillé.";
+                    }
+                    else if (result.RequiresTwoFactor)
+                    {
+                        ErrorMessage += " Vous devez valider votre identité via un second facteur.";
+                    }
+                    else
+                    {
+                        ErrorMessage += " Veuillez vérifier votre email et votre mot de passe.";
+                    }
+                }
+
+
+            }
+
+
+        }
+    }
+
+}

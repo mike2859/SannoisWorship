@@ -1,4 +1,6 @@
-﻿using SannoisWorship.Application.Interfaces;
+﻿using AutoMapper;
+using SannoisWorship.Application.DTOs;
+using SannoisWorship.Application.Interfaces;
 using SannoisWorship.Core.Entities;
 using SannoisWorship.Infrastructure.Repositories.Interfaces;
 
@@ -7,10 +9,11 @@ namespace SannoisWorship.Application.Services;
 public class PartitionService : IPartitionService
 {
     private readonly IPartitionRepository _partitionRepository;
-
-    public PartitionService(IPartitionRepository partitionRepository)
+    private readonly IMapper _mapper;
+    public PartitionService(IPartitionRepository partitionRepository, IMapper mapper)
     {
         _partitionRepository = partitionRepository;
+        _mapper = mapper;
     }
 
     public async Task<List<Partition>> GetAllPartitionsAsync()
@@ -23,13 +26,18 @@ public class PartitionService : IPartitionService
         return await _partitionRepository.GetByIdAsync(id);
     }
 
-    public async Task AddPartitionAsync(Partition partition)
+    public async Task AddPartitionAsync(PartitionDTO partitionDTO)
     {
+        var partition = _mapper.Map<Partition>(partitionDTO);
+
         await _partitionRepository.AddAsync(partition);
     }
 
-    public async Task UpdatePartitionAsync(Partition partition)
+    public async Task UpdatePartitionAsync(PartitionDTO partitionDTO)
     {
+        var partition = _mapper.Map<Partition>(partitionDTO);
+
+
         await _partitionRepository.UpdateAsync(partition);
     }
 

@@ -1,0 +1,30 @@
+﻿@page "/create-chant"
+
+<h3>Créer un Chant</h3>
+
+<EditForm Model="Chant" OnValidSubmit="HandleValidSubmit" FormName="CreateChantForm" class="needs-validation" novalidate>
+    <DataAnnotationsValidator />
+    <ValidationSummary class="text-danger" />
+
+    <div class="mb-3">
+        <label for="title" class="form-label">Titre du chant</label>
+        <InputText id="title" class="form-control" @bind-Value="Chant.Titre" />
+        <ValidationMessage For="@(() => Chant.Titre)" class="text-danger" />
+    </div>
+    <div class="mb-3">
+        <label for="tonalite" class="form-label">Tonalité</label>
+        <InputText id="tonalite" class="form-control" @bind-Value="Chant.Tonalite" />
+        <ValidationMessage For="@(() => Chant.Tonalite)" class="text-danger" />
+    </div>
+    <div class="mb-3">
+        <label for="auteur" class="form-label">Auteur</label>
+        <InputText id="auteur" class="form-control" @bind-Value="Chant.Auteur" />
+        <ValidationMessage For="@(() => Chant.Auteur)" class="text-danger" />
+    </div>
+   
+
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+    <button type="button" class="btn btn-secondary" @onclick="Cancel">Annuler</button>
+</EditForm>
+
+

@@ -1,0 +1,116 @@
+﻿@page "/create-partition"
+@using SannoisWorship.Application.DTOs
+@using SannoisWorship.Application.Interfaces
+@inject IChantService ChantService
+@inject IPartitionService PartitionService
+@inject NavigationManager NavigationManager
+
+<h3 class="text-primary">Créer une nouvelle partition</h3>
+<hr />
+
+<EditForm Model="PartitionModel" OnValidSubmit="@HandleValidSubmit" FormName="CreatePartitionForm" class="needs-validation" novalidate>
+    <DataAnnotationsValidator />
+    <ValidationSummary class="text-danger" />
+
+    <div class="mb-3">
+        <label for="chanson" class="form-label">Sélectionner le chant</label>
+        <InputSelect id="chanson" class="form-select" @bind-Value="PartitionModel.ChantId">
+            <option value="" disabled>Sélectionnez un chant</option>
+            @foreach (var chant in chants)
+            {
+                <option value="@chant.Id">@chant.Titre</option>
+            }
+        </InputSelect>
+        <ValidationMessage For="@(() => PartitionModel.ChantId)" class="text-danger" />
+    </div>
+    <div class="mb-3">
+        <label for="fileUpload" class="form-label">Télécharger le fichier PDF</label>
+        <InputFile id="fileUpload" class="form-control" OnChange="HandleFileUpload" />
+
+        <InputFile OnChange="LoadFiles"  />
+        <ValidationMessage For="@(() => PartitionModel.Contenu)" class="text-danger" />
+    </div>
+
+    <div class="mb-3">
+        <label for="content" class="form-label">Contenu ChordPro</label>
+        <InputTextArea id="content" class="form-control" rows="5" @bind-Value="PartitionModel.Contenu" readonly></InputTextArea>
+        <ValidationMessage For="@(() => PartitionModel.Contenu)" class="text-danger" />
+    </div>
+
+
+
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+    <button type="button" class="btn btn-secondary" @onclick="Cancel">Annuler</button>
+</EditForm>
+
+@code {
+    [SupplyParameterFromForm]
+    public PartitionDTO PartitionModel { get; set; } = new();
+    private List<ChantDTO> chants = new List<ChantDTO>();
+
+    // Charger les chants disponibles
+    protected override async Task OnInitializedAsync()
+    {
+        // Exemple de chargement des chants (Adapter selon votre service)
+        chants = await ChantService.GetAllChantsAsync();  // Remplacer par la méthode d'appel
+    }
+    private List<IBrowserFile> loadedFiles = new();
+    private long maxFileSize = 1024 * 15;
+    private int maxAllowedFiles = 3;
+    private bool isLoading;
+
+    private void LoadFiles(InputFileChangeEventArgs e)
+    {
+        isLoading = true;
+        loadedFiles.Clear();
+
+        foreach (var file in e.GetMultipleFiles(maxAllowedFiles))
+        {
+            try
+            {
+                loadedFiles.Add(file);
+            }
+            catch (Exception ex)
+            {
+              
+            }
+        }
+
+        isLoading = false;
+    }
+
+
+    private async Task HandleFileUpload(InputFileChangeEventArgs e)
+    {
+        var file = e.File;
+        if (file != null)
+        {
+            // Exemple de logique de traitement du fichier PDF
+            var content = await ProcessPdfAsync(file);
+            PartitionModel.Contenu = content;
+        }
+    }
+
+    private async Task<string> ProcessPdfAsync(IBrowserFile file)
+    {
+        // Implémenter le traitement du fichier PDF et l'extraction du contenu ChordPro
+        // Ce code est un simple exemple, vous devrez probablement utiliser une bibliothèque comme PDF.js ou une API
+        // pour extraire le contenu réel du PDF et le formater en ChordPro.
+        PartitionModel.Contenu = "GGGGG";
+
+        // Retourne un contenu simulé pour l'exemple
+        return "Contenu extrait du PDF en format ChordPro";
+    }
+
+    private async Task HandleValidSubmit()
+    {
+       // await PartitionService.CreatePartitionAsync(partitionModel);
+        await PartitionService.AddPartitionAsync(PartitionModel);
+        NavigationManager.NavigateTo("/partitions");
+    }
+
+    private void Cancel()
+    {
+        NavigationManager.NavigateTo("/partitions");
+    }
+}

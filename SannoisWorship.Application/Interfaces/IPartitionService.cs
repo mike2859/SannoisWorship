@@ -1,4 +1,5 @@
-﻿using SannoisWorship.Core.Entities;
+﻿using SannoisWorship.Application.DTOs;
+using SannoisWorship.Core.Entities;
 
 namespace SannoisWorship.Application.Interfaces
 {
@@ -7,8 +8,8 @@ namespace SannoisWorship.Application.Interfaces
         Task<List<Partition>> GetAllPartitionsAsync();
 
         Task<Partition?> GetPartitionByIdAsync(int id);
-        Task AddPartitionAsync(Partition partition);
-        Task UpdatePartitionAsync(Partition partition);
+        Task AddPartitionAsync(PartitionDTO partitionDTO);
+        Task UpdatePartitionAsync(PartitionDTO partitionDTO);
         Task DeletePartitionAsync(int id);
 
     }
